@@ -1,27 +1,27 @@
-'use client'
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Grid, Card, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
+import { useEffect, useState } from 'react';
 
 interface Recipe {
-  id: string
-  title: string
-  prepTime: number
-  cookTime: number
-  difficulty: string
-  category: string
-  imageUrl: string
+  id: string;
+  title: string;
+  prepTime: number;
+  cookTime: number;
+  difficulty: string;
+  category: string;
+  imageUrl: string;
 }
 
 export default function RecipeList() {
-  const [recipes, setRecipes] = useState<Recipe[]>([])
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
     // Fetch recipes from the API
     fetch('/api/recipes')
-      .then(response => response.json())
-      .then(data => setRecipes(data))
-  }, [])
+      .then((response) => response.json())
+      .then((data) => setRecipes(data));
+  }, []);
 
   return (
     <Grid container spacing={3}>
@@ -52,6 +52,5 @@ export default function RecipeList() {
         </Grid>
       ))}
     </Grid>
-  )
+  );
 }
-

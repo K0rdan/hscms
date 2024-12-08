@@ -3,7 +3,7 @@
 import { NextResponse } from 'next/server';
 import mongoClient from '@/lib/mongodb';
 
-export async function GET(_request: Request) {
+export async function GET() {
   try {
     const db = (await mongoClient).db();
     const recipes = await db.collection('recipes').find({}).toArray();

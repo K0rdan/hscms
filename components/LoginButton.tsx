@@ -1,22 +1,13 @@
-'use client'
+'use client';
 
-import { signIn, signOut, useSession } from 'next-auth/react'
-import { Button } from '@mui/material'
+import { Button } from '@mui/material';
+import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function LoginButton() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
 
   if (session) {
-    return (
-      <Button onClick={() => signOut()}>
-        Sign Out
-      </Button>
-    )
+    return <Button onClick={() => signOut()}>Sign Out</Button>;
   }
-  return (
-    <Button onClick={() => signIn('auth0')}>
-      Sign In
-    </Button>
-  )
+  return <Button onClick={() => signIn('auth0')}>Sign In</Button>;
 }
-

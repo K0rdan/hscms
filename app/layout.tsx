@@ -1,7 +1,7 @@
-import { SessionProvider } from 'next-auth/react';
-import { ThemeProvider } from '@mui/material/styles';
+// import theme from '@/lib/theme';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from '@/lib/theme';
+// import { ThemeProvider } from '@mui/material/styles';
+import { SessionProvider } from 'next-auth/react';
 
 export default function RootLayout({
   children,

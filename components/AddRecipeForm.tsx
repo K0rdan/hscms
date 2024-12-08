@@ -1,30 +1,30 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { 
-  TextField, 
-  Button, 
-  Select, 
-  MenuItem, 
-  FormControl, 
-  InputLabel, 
-  Box 
-} from '@mui/material'
+import {
+  Box,
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from '@mui/material';
+import { useState } from 'react';
 
 interface Recipe {
-  id: string
-  title: string
-  prepTime: number
-  cookTime: number
-  difficulty: string
-  category: string
-  ingredients: string
-  instructions: string
-  imageUrl: string
+  id: string;
+  title: string;
+  prepTime: number;
+  cookTime: number;
+  difficulty: string;
+  category: string;
+  ingredients: string;
+  instructions: string;
+  imageUrl: string;
 }
 
 interface AddRecipeFormProps {
-  onAddRecipe: (recipe: Recipe) => void
+  onAddRecipe: (recipe: Recipe) => void;
 }
 
 export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
@@ -37,16 +37,18 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
     category: '',
     ingredients: '',
     instructions: '',
-    imageUrl: ''
-  })
+    imageUrl: '',
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>) => {
-    const { name, value } = e.target
-    setRecipe(prev => ({ ...prev, [name as string]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>,
+  ) => {
+    const { name, value } = e.target;
+    setRecipe((prev) => ({ ...prev, [name as string]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
       const response = await fetch('/api/recipes', {
         method: 'POST',
@@ -54,20 +56,24 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(recipe),
-      })
+      });
       if (response.ok) {
-        const newRecipe = await response.json()
-        onAddRecipe(newRecipe)
+        const newRecipe = await response.json();
+        onAddRecipe(newRecipe);
       } else {
-        console.error('Failed to add recipe')
+        console.error('Failed to add recipe');
       }
     } catch (error) {
-      console.error('Error adding recipe:', error)
+      console.error('Error adding recipe:', error);
     }
-  }
+  };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ '& > :not(style)': { m: 1 } }}>
+    <Box
+      component="form"
+      onSubmit={handleSubmit}
+      sx={{ '& > :not(style)': { m: 1 } }}
+    >
       <TextField
         fullWidth
         label="Title"
@@ -99,7 +105,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
         <Select
           name="difficulty"
           value={recipe.difficulty}
-          onChange={handleChange}
+          // onChange={handleChange}
           required
         >
           <MenuItem value="easy">Easy</MenuItem>
@@ -112,7 +118,7 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
         <Select
           name="category"
           value={recipe.category}
-          onChange={handleChange}
+          // onChange={handleChange}
           required
         >
           <MenuItem value="breakfast">Breakfast</MenuItem>
@@ -152,6 +158,5 @@ export default function AddRecipeForm({ onAddRecipe }: AddRecipeFormProps) {
         Add Recipe
       </Button>
     </Box>
-  )
+  );
 }
-

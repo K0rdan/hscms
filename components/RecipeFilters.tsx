@@ -1,28 +1,28 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import { 
-  FormControl, 
-  InputLabel, 
-  Select, 
-  MenuItem, 
-  TextField, 
-  Typography, 
-  Box,
-  Paper
-} from '@mui/material'
+import {
+  // Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+  Typography,
+} from '@mui/material';
+import { useState } from 'react';
 
 export default function RecipeFilters() {
-  const [prepTime, setPrepTime] = useState('')
-  const [cookTime, setCookTime] = useState('')
-  const [difficulty, setDifficulty] = useState('')
-  const [category, setCategory] = useState('')
+  const [prepTime, setPrepTime] = useState('');
+  const [cookTime, setCookTime] = useState('');
+  const [difficulty, setDifficulty] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleFilterChange = (filterType: string, value: string) => {
     // Implement filter logic here
-    console.log(`Filter changed: ${filterType} = ${value}`)
+    console.log(`Filter changed: ${filterType} = ${value}`);
     // You would typically call an API or update the RecipeList component here
-  }
+  };
 
   return (
     <Paper elevation={2} sx={{ p: 2 }}>
@@ -35,11 +35,13 @@ export default function RecipeFilters() {
           value={prepTime}
           label="Prep Time"
           onChange={(e) => {
-            setPrepTime(e.target.value)
-            handleFilterChange('prepTime', e.target.value)
+            setPrepTime(e.target.value);
+            handleFilterChange('prepTime', e.target.value);
           }}
         >
-          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           <MenuItem value="15">Up to 15 minutes</MenuItem>
           <MenuItem value="30">Up to 30 minutes</MenuItem>
           <MenuItem value="60">Up to 1 hour</MenuItem>
@@ -51,11 +53,13 @@ export default function RecipeFilters() {
           value={cookTime}
           label="Cook Time"
           onChange={(e) => {
-            setCookTime(e.target.value)
-            handleFilterChange('cookTime', e.target.value)
+            setCookTime(e.target.value);
+            handleFilterChange('cookTime', e.target.value);
           }}
         >
-          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           <MenuItem value="15">Up to 15 minutes</MenuItem>
           <MenuItem value="30">Up to 30 minutes</MenuItem>
           <MenuItem value="60">Up to 1 hour</MenuItem>
@@ -68,11 +72,13 @@ export default function RecipeFilters() {
           value={difficulty}
           label="Difficulty"
           onChange={(e) => {
-            setDifficulty(e.target.value)
-            handleFilterChange('difficulty', e.target.value)
+            setDifficulty(e.target.value);
+            handleFilterChange('difficulty', e.target.value);
           }}
         >
-          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           <MenuItem value="easy">Easy</MenuItem>
           <MenuItem value="medium">Medium</MenuItem>
           <MenuItem value="hard">Hard</MenuItem>
@@ -84,11 +90,13 @@ export default function RecipeFilters() {
           value={category}
           label="Category"
           onChange={(e) => {
-            setCategory(e.target.value)
-            handleFilterChange('category', e.target.value)
+            setCategory(e.target.value);
+            handleFilterChange('category', e.target.value);
           }}
         >
-          <MenuItem value=""><em>None</em></MenuItem>
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           <MenuItem value="breakfast">Breakfast</MenuItem>
           <MenuItem value="lunch">Lunch</MenuItem>
           <MenuItem value="dinner">Dinner</MenuItem>
@@ -103,6 +111,5 @@ export default function RecipeFilters() {
         onChange={(e) => handleFilterChange('ingredients', e.target.value)}
       />
     </Paper>
-  )
+  );
 }
-
